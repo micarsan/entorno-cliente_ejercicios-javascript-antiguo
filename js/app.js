@@ -5,39 +5,39 @@
 let set_background_body_30segundos_timmer;
 
 function background_body_aguamarina() {
-    console.log('Enunciado: Cambio de color de fondo de la página a tono azul aguamarina.');
+    console.log('- Enunciado: Cambio de color de fondo de la página a tono azul aguamarina.');
     document.body.style.backgroundColor="#9FD5D1";
 }
 
 function font_body_arial() {
-    console.log('Enunciado: La fuente de la letra del body deberá ser Arial.');
+    console.log('- Enunciado: La fuente de la letra del body deberá ser Arial.');
     document.body.style.fontFamily="Arial";
 }
 
 function color_body_red() {
-    console.log('Enunciado: Color rojo de las letras en el body.');
+    console.log('- Enunciado: Color rojo de las letras en el body.');
     document.body.style.color="red";
 }
 
 function border_body_3px() {
-    console.log('Enunciado: Los bordes deben de tener 3px solid con color rojo.');
+    console.log('- Enunciado: Los bordes deben de tener 3px solid con color rojo.');
     document.body.style.border="3px solid red";
 }
 
 function background_body_30segundos() {
-    console.log('Enunciado: Una función qué haga cambiar el fondo de color cada 30 segundos. (Pista setInterval).');
-    
-    console.log('Lo ejecutamos la primera vez (para ver que cambia).');
-    set_background_body_30segundos();
+    let log = '- Enunciado: Una función qué haga cambiar el fondo de color cada 30 segundos. (Pista setInterval).';
     
     //comprobamos si ya hay un timmer y si es así lo cancelamos
     if( set_background_body_30segundos_timmer ) {
-        console.log('Ya hay un timmer. Cancelándolo.');
+        log += '\n- Ya hay un timmer. Cancelándolo.';
         clearInterval(set_background_body_30segundos_timmer);
     }
     
-    console.log('Lanzamos el setInterval cada 30 segundos');
+    log += '\n- Lanzamos el setInterval cada 30 segundos';
     set_background_body_30segundos_timmer = setInterval(set_background_body_30segundos, 30000);
+    
+    console.log( log + '\n- Lo ejecutamos la primera vez (para ver que cambia).');
+    set_background_body_30segundos();
 }
 function set_background_body_30segundos() {
 
@@ -49,6 +49,7 @@ function set_background_body_30segundos() {
     }
 
     document.body.style.backgroundColor=color;
+    console.log( '- setInterval: Cambio color fondo a: ' + color );
 }
 
 
@@ -57,26 +58,28 @@ function set_background_body_30segundos() {
  */
 
  function body_firstChild_color() {
-    console.log('Enunciado: Utiliza el primer elemento del body y cambia el color de la letra a azul.');
-    document.body.firstChild.style.color="blue";
+    let log = '- Enunciado: Utiliza el primer elemento del body y cambia el color de la letra a azul.';
+    document.body.firstElementChild.style.color="blue";
+    console.log( log + '\n' + document.body.firstElementChild.innerHTML);
 }
 
 function list_iterate() {
-    console.log('Enunciado: Entrar en el elemento lista y recorrer los objetos mostrando cada elemento iterando.');    
+    let log = '- Enunciado: Entrar en el elemento lista y recorrer los objetos mostrando cada elemento iterando.';
     let li = document.querySelectorAll('ol > li');
     for( item of li ) {
-        console.log('Elemento: ' + item.innerHTML);
+        log += '\n- Elemento: ' + item.innerHTML;
         item.style.backgroundColor="red";
     }
+    console.log(log);    
 }
 
 function list_add_elements() {
-    console.log('Enunciado: Añadir a la lista elementos 4, 5 y 6.');
+    console.log('- Enunciado: Añadir a la lista elementos 4, 5 y 6.');
     
 }
 
 function table_title_random() {
-    console.log('Enunciado: Seleccionando el Id de la tabla, iterar y cambiar los campos de los nombres por un número random de 0 a 100.');
+    console.log('- Enunciado: Seleccionando el Id de la tabla, iterar y cambiar los campos de los nombres por un número random de 0 a 100.');
     
 }
 
@@ -93,20 +96,17 @@ function querySelector_link_bgGreen() {
 // Mostrar / ocultar los enunciados
 window.addEventListener("load", function() {
 
+    // Recorremos todos los fielset
     let fielsets = document.querySelectorAll("fieldset");
     for ( let item of fielsets ) {
+        
+        // Asignamos evento click a los legend
         item.querySelector("legend").addEventListener("click", function() {
+            
+            // Toggle class
             this.parentElement.querySelector("ul").classList.toggle('display-none');
         });
     }
-    
-
-
-/*
-    document.querySelectorAll("fieldset legend").addEventListener("click", function(e){
-        e.backgroundColor = 'red';
-    });
-*/
 });
 
 
@@ -130,7 +130,7 @@ console.log = function(message) {
     // Insertamos el log
     scroll.innerHTML +=  '<li><span class="date">'
         + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + '</span>'
-        + '<p>' + message + '</p></li>';
+        + '<pre>' + message + '</pre></li>';
     
     //hacemos scrool hasta el final siempre
     scroll.scroll({
