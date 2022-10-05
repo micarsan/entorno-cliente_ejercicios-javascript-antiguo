@@ -3,6 +3,8 @@
  */
 
 let set_background_body_30segundos_timmer;
+let list_add_elements_timmer = [4,5,6];
+let list_add_elements_typed = [];
 
 function background_body_aguamarina() {
     console.log('- Enunciado: Cambio de color de fondo de la página a tono azul aguamarina.');
@@ -97,6 +99,33 @@ function list_iterate() {
 function list_add_elements() {
     console.log('- Enunciado: Añadir a la lista elementos 4, 5 y 6.');
 
+    // Seleccionamos la lista ordenada
+    let ol = document.querySelectorAll('ol')[0];
+    
+    //establecemos un tiempo para disparar los eventos
+    let time = 0;
+    
+    // Añadimos los elementos
+    let elementos = [4,5,6];
+    for( let item of elementos ) {
+
+        if( list_add_elements_typed[item] | list_add_elements_timmer[item] ) {
+            console.log('\n- Ya está creados el elemento object '+item);
+        } else {
+            list_add_elements_timmer[item] = setTimeout(() => {
+                console.log('\n- object ' + item);
+                ol.innerHTML += '<li id="object_' + item + '"></li>';
+                list_add_elements_typed[item] = new Typed('#object_'+item, {
+                    strings: ['object '+item],
+                    typeSpeed: 30,
+                });
+            }, time);
+    
+            //sumamos medio segundo
+            time += 500;
+        }
+
+    }
 
     
 }
