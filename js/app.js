@@ -64,13 +64,34 @@ function set_background_body_30segundos() {
 }
 
 function list_iterate() {
-    let log = '- Enunciado: Entrar en el elemento lista y recorrer los objetos mostrando cada elemento iterando.';
+    console.log('- Enunciado: Entrar en el elemento lista y recorrer los objetos mostrando cada elemento iterando.');
+    
+    // Seleccionamos todos los elementos de la lista ordenada
     let li = document.querySelectorAll('ol > li');
-    for( item of li ) {
-        log += '\n- Elemento: ' + item.innerHTML;
-        item.style.backgroundColor="red";
+    
+    //establecemos un tiempo para disparar los eventos
+    let time = 0;
+    
+    // Recorremos los li
+    for( let item of li ) {
+
+        // ponemos el fondo gris
+        setTimeout(() => {
+            console.log('\n- Elemento: ' + item.innerHTML);
+            item.classList.toggle('background-grey');
+        }, time);
+        
+        //sumamos medio segundo
+        time += 500;
+
+        // Quitamos el fondo gris
+        setTimeout(() => {
+            item.classList.toggle('background-grey');
+        }, time);
+        
+        //sumamos medio segundo
+        time += 500;
     }
-    console.log(log);    
 }
 
 function list_add_elements() {
