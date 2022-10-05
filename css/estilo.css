@@ -1,4 +1,7 @@
-body { padding-right: 36%; }
+body {
+    margin-right: 290px;
+    margin-bottom: 246px;
+}
 
 .center { text-align: center; }
 .display-none { display: none; }
@@ -6,34 +9,90 @@ body { padding-right: 36%; }
 ol>li { transition: background-color 0.5s ease-out; }
 .background-grey { background-color: grey; }
 
-.ejercicios {
+.panel {
     position: absolute;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 10px;
     color: #222 !important;
+    background-color: #eee;
 }
-.enunciado {
-    top: 10px;
-    right: 0px;
-    width: 33%;
+.panel_hidden .panel_content {
+    display: none;
 }
-.console {
+.derecha.panel_hidden .panel_ocultar {
     position: fixed;
-    left: 0px;
+    right: 0;
+    left: unset;
+}
+.derecha.panel_hidden {
+    body { padding-right: 0px !important; }
+}
+.abajo.panel_hidden {
+    body { padding-bottom: 0px !important; }
+}
+.panel .panel_ocultar {
+    cursor:pointer;
+    background-color: rgb(212, 212, 212);
+}
+.panel .panel_ocultar::after {
+    color: #666;
+}
+.derecha {
+    top: 0px;
+    right: 0px;
     bottom: 0px;
-    width: 63%;
+    z-index: 1;
+    min-width: 18px;
+    position: fixed;
+    overflow: auto;
+}
+.derecha .panel_ocultar {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    bottom: 0;
+    width: 18px;
+}
+.derecha .panel_ocultar::after {
+    position: fixed;
+    content: '\276F';
+    display: inline-block;
+    top: 49%;
+    padding-left: 5px;
+}
+.derecha .panel_content {
+    width: 250px;
+    padding-left: 18px;
+}
+.abajo {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 268px;
     font-family: 'Courier New', Courier, monospace;
 }
-.ejercicios fieldset {
-    background-color: rgb(255, 250, 182);
-    border: 1px solid #333;
+.abajo .panel_ocultar {
+    position: relative;
+    vertical-align: middle;
+}
+.abajo .panel_ocultar::after {
+    left: 50%;
+    content: '\276F';
+    display: inline-block;
+    transform: rotate(90deg);
+    top: -2px;
+    position: absolute;
+}
+
+.panel fieldset {
+    border: 0px solid #333;
     margin-bottom: 20px;
     overflow: auto;
 }
-.console fieldset {
+.abajo .panel_content {
+    margin: 0;
     padding: 0;
 }
-.ejercicios legend {
+.panel legend {
     font-size: 1.2em;
     text-align: center;
     padding: 3px 10px;
@@ -41,30 +100,30 @@ ol>li { transition: background-color 0.5s ease-out; }
     border: 1px solid #333;
     cursor: pointer;
 }
-.ejercicios fieldset #console_log {
+.panel .panel_content #console_log {
     overflow: auto;
     height: 220px;
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-.ejercicios fieldset #console_log li {
+.panel .panel_content #console_log li {
     padding: 5px;
     margin: 0;
 }
-.ejercicios fieldset #console_log li span {
+.panel .panel_content #console_log li span {
     padding-right: 10px;
 }
-.ejercicios fieldset #console_log li pre {
+.panel .panel_content #console_log li pre {
     text-align: left;
     display: inline;
     white-space: break-spaces;
     margin: 0;
 }
-.ejercicios fieldset #console_log li:nth-child(even) {
-    background-color: rgb(255, 254, 245);
+.panel .panel_content #console_log li:nth-child(even) {
+    background-color:white;
 }
-.ejercicios ul { padding-left: 20px; }
-.ejercicios li { margin: 5px 0; }
-.ejercicios a { cursor: pointer; }
-.ejercicios a:hover { text-decoration: underline; }
+.panel ul { padding-left: 20px; }
+.panel li { margin: 5px 0; }
+.panel a { cursor: pointer; }
+.panel a:hover { text-decoration: underline; }

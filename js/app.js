@@ -96,6 +96,8 @@ function list_iterate() {
 
 function list_add_elements() {
     console.log('- Enunciado: Añadir a la lista elementos 4, 5 y 6.');
+
+
     
 }
 
@@ -117,18 +119,49 @@ function querySelector_link_bgGreen() {
 // Mostrar / ocultar los enunciados
 window.addEventListener("load", function() {
 
-    // Recorremos todos los fielset
-    let fielsets = document.querySelectorAll("fieldset");
-    for ( let item of fielsets ) {
-        
+    // Recorremos todos los paneles
+    let panels = document.querySelectorAll(".panel");
+    for ( let item of panels ) {
+
         // Asignamos evento click a los legend
-        item.querySelector("legend").addEventListener("click", function() {
+        item.querySelector(".panel_ocultar").addEventListener("click", function() {
             
+            console.log( 'click on: ' + item.className );
+
             // Toggle class
-            this.parentElement.querySelector("ul").classList.toggle('display-none');
+            item.classList.toggle('panel_hidden');
+
+            // Reajustamos los tamaños de los paneles
+            reajustar_paneles();
+
         });
+
     }
 });
+
+function reajustar_paneles() {
+   
+    let panel_derecha = document.querySelectorAll(".derecha")[0];
+    let panel_abajo = document.querySelectorAll(".abajo")[0];
+    //console.log( panel_abajo.info );
+    
+    // Panel lateral
+    if( panel_derecha.classList.contains('panel_hidden') ) {
+        panel_abajo.style.right = "0px";
+        document.body.style.marginRight = "26px";
+    } else {
+        panel_abajo.style.right = "";
+        document.body.style.marginRight = "";
+    }
+
+    // Panel consola
+    if( panel_abajo.classList.contains('panel_hidden') ) {
+        document.body.style.marginBottom = "18px";
+    } else {
+        document.body.style.marginBottom = "";
+    }
+
+}
 
 
 // Actualiamos la consola
