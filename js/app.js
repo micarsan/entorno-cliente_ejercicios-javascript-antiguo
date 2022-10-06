@@ -52,7 +52,8 @@ function set_background_body_30segundos() {
         color += digitos[Math.floor(Math.random() * 16)];
     }
 
-    document.body.style.backgroundColor = color;
+    // Establecemos el fondo con una opacidad del 30% (50HEX)
+    document.body.style.backgroundColor = color+'50';
     console.log('- setInterval: Cambio color fondo a: ' + color);
 }
 
@@ -167,7 +168,7 @@ function querySelector_link_bgGreen() {
     let enlaces = document.querySelectorAll('.enlaces > a');
 
     for (let enlace of enlaces) {
-        enlace.style.backgroundColor = "green";
+        enlace.style.backgroundColor = "#77e077";
     }
 
 }
@@ -185,22 +186,38 @@ function ejecutar_todo() {
         // Excluimos la primera opción (es esta misma)
         if (index > 0) {
             
+            // Obtenemos el valor de onclick para llamar a la función
             let funcion = item.getAttribute('onclick');
             
-            // Quitamos los 2 últimos caracteres
+            // Quitamos los 2 últimos caracteres ()
             funcion = funcion.substring(0, funcion.length - 2);
-
+            
+            //tiempo por defecto entre ejecuciones
+            let time_wait=1000;
+            
+            // Modificamos el tiempo según función
+            switch( funcion ) {
+                case 'list_iterate':
+                    time_wait = 2500;
+                    break;
+                case 'list_add_elements':
+                    time_wait = 2000;
+                    break;
+            }
+            
+            // Lanzamos cuando le corresponda (1 segundo de diferencia)
             setTimeout(function a(){
                 item.classList.add('active');
                 window[funcion]();
             }, time);
     
+            // Quitamos el resalte de la actividad a los 950ms desde que se lanzó
             setTimeout(function a(){
                 item.classList.remove('active');
-            }, time+950);
+            }, time+time_wait);
         
-            //sumamos medio segundo
-            time += 1000;
+            //sumamos lo que corresponda
+            time += time_wait;
 
         }
     });
