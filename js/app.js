@@ -275,7 +275,6 @@ function reajustar_paneles() {
     // Margin right del body (para salvar el panel lateral)
     // Calculamos el ancho del panel derecho
     let panel_derecha_width = window.getComputedStyle(panel_derecha).width;
-    console.log('derecha_width: ' + panel_derecha_width);
     panel_derecha_width = Number( panel_derecha_width.substring(0, panel_derecha_width.length - 2) );
 
     if( scroll_panel_derecha ) {
