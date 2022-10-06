@@ -53,7 +53,8 @@ function set_background_body_30segundos() {
     }
 
     // Establecemos el fondo con una opacidad del 30% (50HEX)
-    document.body.style.backgroundColor = color+'50';
+    color += '50';
+    document.body.style.backgroundColor = color;
     console.log('- setInterval: Cambio color fondo a: ' + color);
 }
 
