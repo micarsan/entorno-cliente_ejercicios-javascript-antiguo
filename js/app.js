@@ -129,8 +129,6 @@ function list_add_elements() {
         }
 
     }
-
-
 }
 
 function table_title_random() {
@@ -247,29 +245,52 @@ window.addEventListener("load", function () {
             reajustar_paneles();
 
         });
-
     }
+
+    // Reajustamos márgenes y tamaños de paneles
+    reajustar_paneles();
 });
+window.addEventListener("resize", reajustar_paneles);
 
 function reajustar_paneles() {
 
     let panel_derecha = document.querySelectorAll(".derecha")[0];
     let panel_abajo = document.querySelectorAll(".abajo")[0];
+    let scroll_panel_derecha = false;
+
+    //comprobamos si hay barras de scrool
+    if( panel_derecha.scrollHeight > panel_derecha.clientHeight ) {
+        scroll_panel_derecha = true;
+    }
 
     // Panel lateral
     if (panel_derecha.classList.contains('panel_hidden')) {
-        panel_abajo.style.right = "0px";
-        document.body.style.marginRight = "26px";
+        document.body.style.marginRight = '26px';
+        panel_abajo.style.right = '0px';
+   
     } else {
-        panel_abajo.style.right = "";
-        document.body.style.marginRight = "";
+        panel_abajo.style.right = '';
     }
+
+    // Margin right del body (para salvar el panel lateral)
+    // Calculamos el ancho del panel derecho
+    let panel_derecha_width = window.getComputedStyle(panel_derecha).width;
+    console.log('derecha_width: ' + panel_derecha_width);
+    panel_derecha_width = Number( panel_derecha_width.substring(0, panel_derecha_width.length - 2) );
+
+    if( scroll_panel_derecha ) {
+        // Incrementamos 15px que es el tamaño de la barra de scroll
+        panel_derecha_width += 15;
+    }
+    
+    // Actualizamos el margen derecho (8px es el margen de body por defecto)
+    document.body.style.marginRight = panel_derecha_width + 8 + 'px';
 
     // Panel consola
     if (panel_abajo.classList.contains('panel_hidden')) {
         document.body.style.marginBottom = "18px";
     } else {
-        document.body.style.marginBottom = "";
+        document.body.style.marginBottom = '';
     }
 
 }
