@@ -3,13 +3,15 @@ body {
     margin-bottom: 246px;
 }
 
-.typed-cursor { display: none; }
+.enlaces a { transition: background-color 0.6s ease-out; }
 
+.typed-cursor { display: none; }
 .center { text-align: center; }
+.bold {font-weight: 400;}
 .display-none { display: none; }
 .font-08 { font-size: 0.8em; }
 
-ol>li { transition: background-color 0.5s ease-out; }
+ol>li { transition: background-color 0.35s ease-out; }
 .background-grey { background-color: grey; }
 
 .panel {
@@ -26,14 +28,8 @@ ol>li { transition: background-color 0.5s ease-out; }
     right: 0;
     left: unset;
 }
-.derecha.panel_hidden {
-    body { padding-right: 0px !important; }
-}
 .derecha.panel_hidden .panel_ocultar {
     transform: rotate(180deg);
-}
-.abajo.panel_hidden {
-    body { padding-bottom: 0px !important; }
 }
 .abajo.panel_hidden .panel_ocultar::after {
     transform: rotate(270deg);
@@ -125,6 +121,10 @@ ol>li { transition: background-color 0.5s ease-out; }
 .panel .panel_content #console_log li {
     padding: 5px;
     margin: 0;
+    cursor: default;
+}
+.panel .panel_content #console_log li:hover {
+    background-color:rgb(234, 166, 158) !important;
 }
 .panel .panel_content #console_log li span {
     padding-right: 10px;
@@ -148,7 +148,7 @@ ol>li { transition: background-color 0.5s ease-out; }
     cursor: pointer;
     transition: background-color 0.350s ease-out;
 }
-.panel li:hover {
+.panel li:hover, .panel li.active {
     background-color:rgb(234, 166, 158);
 }
 .panel a:hover { text-decoration: none; }
